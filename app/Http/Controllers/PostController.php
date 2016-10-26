@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 //use DB;
 use App\Post;
 
+//use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Session;
+use Image;
 
 use App\Http\Requests;
 
@@ -59,6 +61,22 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->body = $request->body;
+
+        //save image
+        if ($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            //if only pne image for post:
+//            $filename = $post->id;
+            //encoding
+//            $filename = time() . '.' . $image->encode('png');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+//            $location = storage_path('/app/');
+            $location = public_path('images/' . $filename);
+            Image::make($image)->fit(1280,720)->save($location);
+
+            $post->image = $filename;
+        }
+
 
         $post->save();// save into the database
 

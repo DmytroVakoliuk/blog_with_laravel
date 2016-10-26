@@ -23,8 +23,9 @@
                 {{ Form::label('body','Post Body:') }}
                 {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '',
                     'minlength' => '10']) }}
-
-                {{ Form::file('image',['class'=>'btn btn-success', 'alt' => '', 'name' => 'nu', 'src' => '' ]) }}
+                {{ Form::label('featured_image','Upload Featured Image:') }}
+{{--                {{ Form::file('featured_image',['class'=>'btn btn-success', 'alt' => '', 'name' => 'nu', 'src' => '' ]) }}--}}
+                {{ Form::file('featured_image') }}
 
                 {{ Form::submit('Create Post', ['class' => 'btn btn-success btn-lg btn-block',
                         'style' => 'margin-top: 15px']) }}

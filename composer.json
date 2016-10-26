@@ -14,7 +14,8 @@
     "barryvdh/laravel-ide-helper": "^2.2",
     "components/jquery": "^2.2",
     "barryvdh/laravel-debugbar": "^2.3",
-    "doctrine/dbal": "^2.5"
+    "doctrine/dbal": "^2.5",
+    "intervention/image": "^2.3"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

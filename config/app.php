@@ -185,6 +185,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        //http://image.intervention.io/
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*
@@ -239,6 +242,10 @@ return [
 
         //
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        //
+        'Image' => Intervention\Image\Facades\Image::class
+
     ],
 
 ];
