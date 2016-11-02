@@ -24,7 +24,7 @@ class PostController extends Controller
     {
 //        $posts = \DB::table('posts')->where('id',1)->get();
 //        $posts = DB::table('posts')->take(5)->orderBy('title')->get();
-        $prosts = Post::orderBy('title')->take(5)->get();
+        $prosts = Post::orderBy('id', 'desc')->paginate(5);
 
 //        return view('posts.index', compact('posts'));
         return view('posts.index')->withPosts($prosts);
