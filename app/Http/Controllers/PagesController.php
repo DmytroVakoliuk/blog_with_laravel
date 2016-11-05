@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 /**
  *
  */
@@ -16,10 +17,8 @@ class PagesController extends Controller
         # pass that data to the correct view
 
         // $activeIndex = 'class=active';
+        $posts = Post::orderBy('created_at', 'desc')->take(5)->get();
 
-        $posts = [
-            'first post', 'second post', 'third post'
-        ];
 
 //		return view('pages.welcome', compact('posts'));
         return view('pages.welcome')->withPosts($posts);

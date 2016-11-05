@@ -27,12 +27,16 @@
                         {{--<a href="" class="btn btn-primary btn-block">Edit</a>--}}
                     </div>
                     <div class="col-sm-6">
-
                         {{--Deleting--}}
                         {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
                         {!! Form::close() !!}
-                        {{--<a href="" class="btn btn-danger btn-block">Delete</a>--}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ Html::linkRoute('posts.index', '<<See all Posts', [],
+                                ['class' => 'btn btn-default btn-block btn-h1-spacing']) }}
+                        </div>
                     </div>
                 </div>
             </div>

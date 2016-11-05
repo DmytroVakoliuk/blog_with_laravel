@@ -27,10 +27,10 @@
         @if (count($posts))
             <div class="col-md-8">
                 <div class="post">
-                    @foreach ($posts as $title)
-                        <h3>{{ $title }}</h3>
-                        {{--<p>{{ $body }}</p>--}}
-                        <a href="#" class="btn btn-primary">Read more</a>
+                    @foreach ($posts as $post)
+                        <h3>{{ $post->title }}</h3>
+                        <p>{{ str_limit($post->body , 300, '...') }}</p>
+                        <a href="{{ route('posts.show', $post->id )}}" class="btn btn-primary">Read more</a>
                     @endforeach
                 </div>
             </div>
