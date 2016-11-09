@@ -24,7 +24,7 @@ class PostController extends Controller
     {
 //        $posts = \DB::table('posts')->where('id',1)->get();
 //        $posts = DB::table('posts')->take(5)->orderBy('title')->get();
-        $prosts = Post::orderBy('id', 'desc')->paginate(5);
+        $prosts = Post::orderBy('id', 'desc')->paginate(7);
 
 //        return view('posts.index', compact('posts'));
         return view('posts.index')->withPosts($prosts);
@@ -51,6 +51,7 @@ class PostController extends Controller
         // validate the data
         $this->validate($request, [
             'title' => 'bail|required|unique:posts|max:255',
+            'slug' => 'bail|required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required|min:10'
         ]);
 
@@ -58,6 +59,7 @@ class PostController extends Controller
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
 
         $post->save();// save into the database
@@ -107,10 +109,21 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //Validate data
-        $this->validate($request, [
-            'title' => 'bail|required|max:255',
-            'body' => 'required'
-        ]);
+        if($post->slug == $request->slug)
+        {
+            $this->validate($request, [
+                'title' => 'bail|required|max:255',
+                'body' => 'required'
+            ]);
+        }
+        else
+        {
+            $this->validate($request, [
+                'title' => 'bail|required|max:255',
+                'slug' => 'bail|required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'body' => 'required'
+            ]);
+        }
 
         //Save the data to DB
         $post->update($request->except('_token', '_method'));

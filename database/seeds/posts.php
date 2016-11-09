@@ -25,6 +25,7 @@ php artisan make:model User --migration
 php artisan make:model User -m
 
 ',
+            'slug' => str_slug('Defining Models', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -43,6 +44,7 @@ class Flight extends Model
     //
 }
 ',
+            'slug' => str_slug('Eloquent Model Conventions', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -66,6 +68,7 @@ class Flight extends Model
     protected $table = \'my_flights\';
 }
 ',
+            'slug' => str_slug('Table Names', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -76,6 +79,7 @@ class Flight extends Model
 In addition, Eloquent assumes that the primary key is an incrementing integer value, which means that by default the primary key will be cast to an int automatically. If you wish to use a non-incrementing or a non-numeric primary key you must set the public $incrementing property on your model to false.
 
 ',
+            'slug' => str_slug('Primary Keys', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -116,6 +120,7 @@ class Flight extends Model
     protected $dateFormat = \'U\';
 }
 ',
+            'slug' => str_slug('Timestamps', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -140,6 +145,7 @@ class Flight extends Model
 }
 
 ',
+            'slug' => str_slug('Database Connection', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -157,6 +163,7 @@ foreach ($flights as $flight) {
     echo $flight->name;
 }
 ',
+            'slug' => str_slug('Retrieving Models', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -171,6 +178,7 @@ $flights = App\Flight::where(\'active\', 1)
 Since Eloquent models are query builders, you should review all of the methods available on the query builder. You may use any of these methods in your Eloquent queries.
 
 ',
+            'slug' => str_slug('Adding Additional Constraints', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -188,6 +196,7 @@ foreach ($flights as $flight) {
 }
 
 ',
+            'slug' => str_slug('Collections', '-'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
