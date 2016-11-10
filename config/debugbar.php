@@ -98,7 +98,7 @@ return [
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages
         'logs'            => true, // Add the latest log messages
-        'files'           => true, // Show the included files
+        'files'           => false, // Show the included files
         'config'          => true, // Display config settings
         'auth'            => true, // Display Laravel authentication status
         'gate'            => true, // Display Laravel Gate checks
@@ -116,7 +116,7 @@ return [
 
     'options' => [
         'auth' => [
-            'show_name' => false,   // Also show the users name/email in the debugbar
+            'show_name' => true,   // Also show the users name/email in the debugbar
         ],
         'db' => [
             'with_params'       => true,   // Render SQL with the parameters substituted

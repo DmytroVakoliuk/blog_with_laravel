@@ -1,8 +1,6 @@
-@extends('main')
+@extends('layouts.app')
 
 @section('title','| All Posts')
-
-{{--@section('postActive','class=active')--}}
 
 @section('content')
 

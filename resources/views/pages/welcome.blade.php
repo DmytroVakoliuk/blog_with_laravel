@@ -1,8 +1,6 @@
-@extends('main')
+@extends('layouts.app')
 
 @section('title','| Homepage')
-
-{{--@section('homeActive','class=active')--}}
 
 @section('content')
     <div class="row">
