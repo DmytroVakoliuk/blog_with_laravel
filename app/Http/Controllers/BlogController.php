@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function getIndex()
+    {
+        $posts = Post::paginate(7);
+
+        return view('blog.index')->withPosts($posts);
+    }
+
     public function getSingle($slug)
     {
         //fetch from the DB, based on slug
