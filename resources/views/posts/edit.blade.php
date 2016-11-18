@@ -5,6 +5,7 @@
 @section('content')
 
     <div class="row">
+    {{ dd($post)}}
         {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
             <div class="col-md-8">
                 {{--title must mach title form DB--}}
@@ -42,7 +43,10 @@
                 </div>
             </div>
         {!! Form::close() !!}
-{{--
+
+    </div>
+
+    </br>
         <form method="POST" action="{{ route('posts.update', $post->id) }}">
             {{  method_field('PUT') }}
             <div class="form-group">
@@ -53,7 +57,6 @@
                 <label for="body">Body:</label>
                 <textarea type="text" class="form-control input-lg" id="body" name="body" rows="10">{{ $post->body }}</textarea>
             </div>
-    </div>
     <div class="col-md-4">
         <div class="well">
             <dl class="dl-horizontal">
@@ -74,8 +77,12 @@
                     <button type="submit" class="btn btn-success btn-block">Save</button>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
                     {{ method_field('PUT') }}
-              </form>﻿--}}
 
+
+                </div>
+            </div>
     </div>
+    </div>
+            </form>﻿
 
 @stop
