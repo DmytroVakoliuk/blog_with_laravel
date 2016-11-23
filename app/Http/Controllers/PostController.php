@@ -11,6 +11,7 @@ use Session;
 use App\Http\Requests;
 
 //use Symfony\Component\HttpFoundation\Session\Session;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -112,8 +113,9 @@ class PostController extends Controller
             'body' => 'required'
         ]);
 
-        //Save the data to DB
-        $post->update($request->except('_token', '_method'));
+        //Update the data to DB
+        $post->slug = null;
+        $post->update($request->all());
         Session::flash('success', 'This post was successfully changed!');
         //Redirect to posts.show
         return redirect()->route('posts.show', $post->id);
