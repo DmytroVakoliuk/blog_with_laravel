@@ -185,6 +185,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
+
+
     ],
 
     /*
