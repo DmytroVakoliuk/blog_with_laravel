@@ -5,7 +5,6 @@
 @section('content')
 
     <div class="row">
-    {{ dd($post)}}
         {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
             <div class="col-md-8">
                 {{--title must mach title form DB--}}
@@ -14,6 +13,16 @@
 
                 {{ Form::label('slug', 'Slug', ['class' => 'form-spacing-top']) }}
                 {{ Form::text('slug', null, array('class' => 'form-control')) }}
+
+                {{ Form::label('category_id', 'Category', ['class' => 'form-spacing-top']) }}
+                {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+
+                {{--<select class="form-control" name="category_id">
+
+                    @foreach($categories as $categorie)
+                        <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                    @endforeach
+                </select>--}}
 
                 {{ Form::label('some_body', 'Body:', ['class' => 'form-spacing-top']) }}
                 {{ Form::textarea('body', null, ['class' => 'form-control']) }}
@@ -46,7 +55,7 @@
 
     </div>
 
-    </br>
+   {{-- </br>
         <form method="POST" action="{{ route('posts.update', $post->id) }}">
             {{  method_field('PUT') }}
             <div class="form-group">
@@ -83,6 +92,6 @@
             </div>
     </div>
     </div>
-            </form>﻿
+            </form>﻿--}}
 
 @stop

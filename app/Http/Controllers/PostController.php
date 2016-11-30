@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-//use DB;
+use App\Category;
 use App\Post;
-
 use Illuminate\Http\Request;
 use Session;
-
 use App\Http\Requests;
 
-//use Symfony\Component\HttpFoundation\Session\Session;
 
 class PostController extends Controller
 {
@@ -37,7 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all()->sortBy('name');
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -51,16 +49,18 @@ class PostController extends Controller
         // validate the data
         $this->validate($request, [
             'title' => 'bail|required|unique:posts|max:255',
+            'body' => 'required|min:10',
             'slug' => 'bail|required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'body' => 'required|min:10'
+            'category_id' => 'required|integer'
         ]);
 
         // store in the database
         $post = new Post;
 
         $post->title = $request->title;
-        $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
 
         $post->save();// save into the database
 
@@ -93,14 +93,18 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        dump(gettype($id));
-
         //find the post in DB and save as variable
         $post = Post::find($id);
-        dd(gettype($post));
+
+        $categories = Category::all()->sortBy('name');
+        $cats = [];
+        foreach ($categories as $category){
+            $cats[$category->id] = $category->name;
+
+        }
 
         //return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -117,7 +121,8 @@ class PostController extends Controller
         {
             $this->validate($request, [
                 'title' => 'bail|required|max:255',
-                'body' => 'required'
+                'body' => 'required',
+                'category_id' => 'required|integer'
             ]);
         }
         else
@@ -125,12 +130,13 @@ class PostController extends Controller
             $this->validate($request, [
                 'title' => 'bail|required|max:255',
                 'slug' => 'bail|required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'body' => 'required'
+                'body' => 'required',
+                'category_id' => 'required|integer'
             ]);
         }
 
         //Save the data to DB
-        $post->update($request->except('_token', '_method'));
+        $post->update($request->except('_token'));
         Session::flash('success', 'This post was successfully changed!');
         //Redirect to posts.show
         return redirect()->route('posts.show', $post->id);

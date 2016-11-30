@@ -10,7 +10,7 @@
 |
 */
 
-
+Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')
     ->where('slug', '[\w\d\-\_]+'); //accepts any latter, any number, -, _
 Route::get('blog', ['uses' => 'BlogController@getIndex'])->name('blog.index');
